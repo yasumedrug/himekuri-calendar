@@ -237,9 +237,11 @@ async function main() {
     pdfDoc     = await loadingTask.promise;
     totalPages = pdfDoc.numPages;
 
-    // 今日のページへ自動ジャンプ
-    const today     = new Date();
-    const todayPage = dateToPage(today);
+    // 今日のページへ自動ジャンプ（範囲外なら4月1日）
+    const today        = new Date();
+    const calendarEnd  = new Date(2027, 2, 31); // 2027-03-31
+    const inRange      = today >= CALENDAR_START && today <= calendarEnd;
+    const todayPage    = inRange ? dateToPage(today) : 1;
     await showPage(todayPage);
 
     loadingEl.classList.add('hidden');
