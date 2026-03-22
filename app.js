@@ -193,11 +193,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') navigate(1);
 });
 
-// 日付ボタンをクリック → date picker を開く
-const dateDisplayBtn = document.getElementById('date-display-btn');
-dateDisplayBtn.addEventListener('click', () => {
-  datePicker.showPicker ? datePicker.showPicker() : datePicker.click();
-});
+// date input がボタン内に重なっているため、タップで直接開く（スマホ対応）
 
 // date picker で日付選択 → そのページへジャンプ
 datePicker.addEventListener('change', async () => {
